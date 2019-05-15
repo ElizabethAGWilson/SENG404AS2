@@ -1,0 +1,14 @@
+tags
+owner
+    - reputation
+    - accept_rate
+is_answered
+view_count
+accepted_answer_id
+answer_count
+score
+question_id
+creation_date
+last_activity_date
+title
+body
