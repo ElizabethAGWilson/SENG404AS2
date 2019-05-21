@@ -1,5 +1,4 @@
 import requests
-import csv
 from Utilities import *
 
 API_KEY = "xqIpWTa4rMFb4VMhxLITYQ(("
@@ -55,12 +54,14 @@ def filter_questions(in_file, out_file):
     for line in data:
         line = line.strip().split(b"\t")
         if len(line) == 4:
-            question_id, _, _, boolean = line
-            if boolean == b'TRUE':
-                valid_ids.append(int(question_id))
+            info = tuple(line)
+            # question_id, title, body, boolean = line
+            if line[3] == b'TRUE':
+                valid_ids.append(info)
 
-    for qid in valid_ids:
-        outfile.write('%s\n' % qid)
+    for dat in valid_ids:
+        qid, title, body, _ = dat
+        outfile.write('{}\t{}\t{}\n'.format(str(qid), str(title), str(body)))
 
 
 def main():
@@ -70,7 +71,7 @@ def main():
     # write_results_to_file(questions, "output.txt")
     # make_csv()
 
-    filter_questions("SO_filtered.tsv", "filtered_SO_ids.txt")
+    filter_questions("SE.tsv", "filtered_SE.txt")
 
 
 main()
