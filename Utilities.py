@@ -1,6 +1,42 @@
 import re
 import json
 
+elicitation = ["business", "client-relations", "communication", "customer-relations", "functional-requirements",
+               "planning",
+               "project-planning", "quality-attributes", "system-requirements"]
+documentation = ["diagrams", "documentation", "modeling", "prototyping", "report", "specifications", "srs", "uml",
+                 "use-case",
+                 "user-stories", "user-story"]
+
+analysis = ["analysis", "estimation", "metrics", "systems-analysis", "enterprise-architect"]
+
+validation = ["acceptance-testing", "quality", "testing", "usability", "user-experience", "validation", "verification"]
+
+management = ["management", "product-management", "project-management", "requirements-management", "scope",
+              "scope-creep"]
+
+implement = ["api", "architecture", "cardinality", "database-design", "design", "iphone", "language-agnostic", "tfs",
+             "tfs2010",
+             "web-development"]
+
+methodology = ["agile", "development-process", "extreme-programming", "kanban", "methodology", "scrum", "sdlc",
+               "waterfall"]
+
+misc = ["engineering", "freelancing", "productivity", "project", "software", "standards", "system", "teamwork",
+        "terminology", "tools"]
+
+
+def read_ids_from_csv():
+    line_list = []
+    with open("data_csv/filtered_SE_ids.txt", "r") as file:
+        line_list.extend(file.readlines())
+    with open("data_csv/filtered_SO_ids.txt", "r") as file:
+        line_list.extend(file.readlines())
+    i = 0
+    while i < len(line_list):
+        line_list[i] = int(line_list[i].strip('\n'))
+        i += 1
+    return line_list
 
 def clean_text(raw_html):
     """Cleans html, new lines, and quotation marks from text"""
